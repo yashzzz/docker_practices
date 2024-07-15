@@ -1,0 +1,19 @@
+#getting base image
+
+FROM openjdk:11  
+ 
+# working directory where all code are kept
+
+WORKDIR app/  
+
+# coping code to our working directory 
+
+COPY  Hello.java .
+
+# compiling the code 
+
+RUN javac Hello.java 
+
+#run the code externely
+
+CMD ["java","Hello"]
