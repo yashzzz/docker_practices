@@ -1,0 +1,23 @@
+in this project i created and mounted a volume to my node app
+in docker containers if container are stoped or remote the data of container is also lost so we need to save that data in our system we 
+can achieve this by docker volumes in docker volumes there are mainly three type of volumes 
+===> anonymous volume = it is fully managed by docker and also we dont give path to this volume
+===> named volume = we give name to this volumes by the data in the container is stored only we can not give anything from utside the conatiner
+===> bind mounts = this is the volume mounted by your system(path given by you) to the container
+
+to achieve the concept of volume you can simply run this command after docker build
+===> docker build . -t node-app
+===> docker run -d -p 3000:80 --name node-app -v feedback:/app/feedback -v "(path of the volume created):/app" -v /app/node-module node:app
+ -v is the flag for creating a volume the first volume we created for our feedback and second one is the all data and code storing for working directory in container.
+  third one is the anonymous volume for running our dependencies 
+
+
+
+====>   SECOND WAY OF CREATING A VOLUME
+   we need to specify a folder in our system to where our container data is stored by the use of mkdir command
+then run the following command 
+===> docker volume create --name node-app-volume --opt type=none --opt device=(path of the directory) --opt o=bind
+by above comand our volume get created then we to mount to the conatiner by following command
+===> docker run -p 3000:80 --mount source=node-app-volume,target=/app node-app:latest
+
+
