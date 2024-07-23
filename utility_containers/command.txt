@@ -1,0 +1,3 @@
+docker run -it -v /home/yash/desktop/30_days/utility-containers:/app node-util npm init
+
+docker-compose run npm init
