@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: ./app
+    ports:
+      - '5000:8000'  
+    volumes:
+      - /home/yash/Desktop/30days/flask/app:/app 
