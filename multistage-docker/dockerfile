@@ -1,0 +1,29 @@
+# stage one 
+FROM python:3.9 AS stage1
+
+WORKDIR /app
+
+COPY . /app
+
+#stage 2
+
+FROM python:3-slim AS stage2
+
+WORKDIR /app
+
+COPY  --from=stage1 /app  /app
+
+#stage3SS
+
+FROM python:3-alpine
+
+WORKDIR /app2
+
+RUN pip install flask
+
+COPY --from=stage2 /app /app2
+
+EXPOSE 8000
+
+CMD ["python","app.py"]
+
